@@ -18,10 +18,6 @@ class Produto{
         }
 
         this.value = parseFloat(value);
-
-        if (categoria.name == null || categoria.name == "") {
-            throw new BadRequestError("A Categoria é requirida.");
-        }
     }
 
 }

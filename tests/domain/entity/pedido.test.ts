@@ -9,6 +9,22 @@ import Produto from '../../../app/entity/produto';
 import Categoria from '../../../app/entity/categoria';
 
 describe("Validando Pedido", () => {
+    test("setStatus", () => {
+      let dataClient = new Cliente(
+        "Heitor Bernardo Victor Nogueira",
+        "heitoBVN@gmail.com",
+        "043.065.619-09"
+      );
+
+      let dataPedido = new Pedido(
+        dataClient,
+        statusPedido.CRIADO
+      );
+
+      dataPedido.setStatus(statusPedido.EM_PREPARACAO);
+      expect(2).toEqual(dataPedido.getStatus());
+    });
+
     test("Cria Pedido sem Cliente", () => {
       const dataPedido = () => {
         new Pedido(

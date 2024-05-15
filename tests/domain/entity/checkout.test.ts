@@ -83,4 +83,26 @@ describe("Validando Entity Checkout", () => {
         expect(StatusCheckout.AGUARDANDO_PAGAMENTO).toEqual(instance.getStatus());
         expect(instance.uuid).not.toBeNull();
     });
+
+    test("getPaymentMethod", () => {
+        let instance = new Checkout(
+            new Pedido(
+                new Cliente(
+                    "Heitor Bernardo Victor Nogueira",
+                    "heitoBVN@gmail.com",
+                    "043.065.619-09"
+                  ),
+                statusPedido.CRIADO
+            ),
+            new Pix(
+                new Payer(
+                    "Heitor Bernardo Victor Nogueira",
+                    "heitoBVN@gmail.com",
+                    "317.594.877-40"
+                )
+            )
+        );
+
+        expect(1).toEqual(instance.getPaymentMethod());
+    });
 });
