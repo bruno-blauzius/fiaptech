@@ -60,4 +60,31 @@ describe("Validando Entity Payer", () => {
             );
         }).toThrow("E-mail inválido.");
     });
+    test("Nome é obrigatório", () => {
+        expect(() => {
+            let instance = new Payer(
+                "",
+                "heitoBVN@gmail",
+                "317.594.877-40"
+            );
+        }).toThrow("Nome é obrigatório.");
+    });
+    test("Email é obrigatório", () => {
+        expect(() => {
+            let instance = new Payer(
+                "Heitor Bernardo Victor Nogueira",
+                "",
+                "317.594.877-40"
+            );
+        }).toThrow("E-mail é obrigatório.");
+    });
+    test("CPF é obrigatório", () => {
+        expect(() => {
+            let instance = new Payer(
+                "Heitor Bernardo Victor Nogueira",
+                "heitoBVN@gmail.com",
+                ""
+            );
+        }).toThrow("CPF é obrigatório.");
+    });
 });

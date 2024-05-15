@@ -59,4 +59,44 @@ describe("Validando Entity Cliente", () => {
             );
         }).toThrow("E-mail do cliente é inválido.");
     });
+
+    test("Nome Obrigatório", () => {
+        expect(() => {
+            let dataClient = new cliente(
+                "",
+                "abc@dfe.com",
+                "123.456.789-12"
+            );
+        }).toThrow("Nome do cliente é obrigatório");
+    });
+
+    test("E-mail Obrigatório", () => {
+        expect(() => {
+            let dataClient = new cliente(
+                "Heitor Bernardo Victor Nogueira",
+                "",
+                "123.456.789-12"
+            );
+        }).toThrow("E-mail do cliente é obrigatório");
+    });
+
+    test("CPF Obrigatório", () => {
+        expect(() => {
+            let dataClient = new cliente(
+                "Heitor Bernardo Victor Nogueira",
+                "abc@dfe.com",
+                ""
+            );
+        }).toThrow("CPF do cliente é obrigatório");
+    });
+
+    test("CPF com máscara", () => {
+        let dataClient = new cliente(
+            "Heitor Bernardo Victor Nogueira",
+            "heitobvn@gmail.com",
+            "317.594.877-40"
+        );
+
+        expect("317.594.877-40").toEqual(dataClient.cpfFormat());
+    });
 });

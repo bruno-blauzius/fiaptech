@@ -33,7 +33,7 @@ describe("Validando Entity Produto", () => {
         expect(1).toEqual(produto.categoria.id);
         expect(1).toEqual(produto.id);
     });
-    
+
     test("Instanciar Produto todos os parametros", () => {
         expect(() => {
             let produto = new Produto(
@@ -43,4 +43,35 @@ describe("Validando Entity Produto", () => {
             );
         }).toThrow("O nome da categoria é obrigatório.");
     });
+
+    test("Instanciar Produto sem title", () => {
+        expect(() => {
+            let produto = new Produto(
+                "",
+                10,
+                new Categoria("Categoria Teste", 1)
+            );
+        }).toThrow("O Titulo é requirido.");
+    });
+
+    test("Instanciar Produto sem value", () => {
+        expect(() => {
+            let produto = new Produto(
+                "Produto Teste",
+                "",
+                new Categoria("Categoria Teste", 1)
+            );
+        }).toThrow("O Valor é requirido.");
+    });
+
+    test("Instanciar Produto com categoria sem nome", () => {
+        expect(() => {
+            let produto = new Produto(
+                "Produto Teste",
+                10,
+                new Categoria("", 1)
+            );
+        }).toThrow("O nome da categoria é obrigatório.");
+    });
+
 });
